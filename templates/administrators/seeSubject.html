@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'administrators/administratorshome.html' %}
+{% block title %}
+<title>Title</title>
+{% endblock %}
+{% block content %}
+
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>题目</th>
+            <th>功能</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td>
+                    {{ forloop.counter }}</td>
+                <td>
+                    {{ subject.subject }}
+                </td>
+                <td>
+                    <a href={% url 'deleteSubject' subject.id %}>删除</a>
+                    <span><a href={% url 'modifySubject' subject.id %}>修改</a></span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

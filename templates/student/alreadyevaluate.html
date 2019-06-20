@@ -1,0 +1,30 @@
+{% extends 'student/unselected.html' %}
+{% block navigation2 %}
+    <ul class="nav nav-tabs">
+        <li><a href={% url 'notevaluated' %}>未评</a></li>
+        <li><a href={% url 'alreadyevaluated' %}>已评</a></li>
+    </ul>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>课程名</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.id }}</td>
+                    <td> {{ teacher.name }}</td>
+                    <td>已评价</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+

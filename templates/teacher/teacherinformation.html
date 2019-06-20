@@ -1,0 +1,57 @@
+{% extends "teacher/teacherhome.html" %}
+{% block content %}
+    <style>
+    ul li {
+        color: red;
+        list-style-type: none;
+    }
+    </style>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>姓名</td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>{{ form.sex }}{{ error.sex }}</td>
+        </tr>
+        <tr>
+            <td>出生年月</td>
+            <td>{{ form.birthday }}{{ error.birthday }}</td>
+        </tr>
+        <tr>
+            <td>年龄</td>
+            <td>{{ form.age }}</td>
+        </tr>
+        <tr>
+            <td>头像</td>
+            <td>{{ form.img }}</td>
+        </tr>
+        <tr>
+            <td>联系方式</td>
+            <td>{{ form.telephone }}{{ error.telephone }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="提交">
+</form>
+    <script type="text/javascript">
+    $("#id_birthday").datetimepicker({//选择年月日
+　　　　　　format: 'yyyy-mm-dd',
+　　　　　　language: 'zh-CN',
+　　　　　　weekStart: 1,
+　　　　　　todayBtn: 1,//显示‘今日’按钮
+　　　　　　autoclose: 1,
+　　　　　　todayHighlight: 1,
+　　　　　　startView: 2,
+　　　　　　minView: 2,  //Number, String. 默认值：0, 'hour'，日期时间选择器所能够提供的最精确的时间选择视图。
+
+　　　　　　clearBtn:true,//清除按钮
+
+　　　　　　forceParse: 0
+　　　　});
+</script>
+{% endblock %}

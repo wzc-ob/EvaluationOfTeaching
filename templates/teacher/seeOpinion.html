@@ -1,0 +1,21 @@
+{% extends 'teacher/teacherhome.html'%}
+{% block content %}
+    <div class="table-responsive">
+    <table class="table">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for foo in evaluation %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ foo.opinion }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+

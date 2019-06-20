@@ -1,0 +1,55 @@
+{% extends "login.html" %}
+{% block title %}
+    <title>修改</title>
+    <script>
+        function modify() {
+            $.ajax({
+                url: '{% url 'user:modifyajax'%}',
+                type: "POST",
+                traditional: true,
+                data: {
+                    "username": $('#username').val(),
+                    "password": $('#password').val(),
+                    "confirmpassworm": $('#confirmpassword').val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == 'success') {
+                        {#alert('修改密码成功')#}
+                        window.location.href = '/user/login'
+                    } else {
+                        var spa = document.createElement('span')
+                        var content = document.createTextNode(data)
+                        spa.appendChild(content)
+                        console.log(spa)
+                        $("#alert").html(spa)
+                    }
+
+                },
+                error: function (data) {
+                    view("异常！");
+                    {#alert('失败');#}
+                }
+            })
+        }
+
+        function clearalert() {
+            $("#alert").html('')
+        }
+    </script>
+{% endblock %}
+{% block mainbody %}
+    <form id='form' class="form">
+    {% csrf_token %}
+    <input type="text" id='username' placeholder="Username" name="username" readOnly="true"
+           value={{ request.user.username }}>
+    <input type="password" id='password' placeholder="Password" name="password" required="required">
+    <div id="alert"></div>
+    <input onfocus="clearalert()" type="password" id='confirmpassword' placeholder="Password" name="confirmpassword"
+           required="required">
+    <button type="button" id="login-button" onclick="modify()">Modify</button>
+    </form>
+{% endblock %}
+{% block content %}
+    <h1>修改</h1>
+{% endblock %}

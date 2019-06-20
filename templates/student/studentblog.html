@@ -1,0 +1,64 @@
+{% extends "student/studenthome.html" %}
+{% block navigation2 %}
+    <style>
+        input:focus {
+            height: 48px;
+        }
+    </style>
+    <div>
+        <h1>{{ article.title }}</h1>
+        {% autoescape off %}
+            {{ article.article }}
+        {% endautoescape %}
+        <hr/>
+    </div>
+    <form style="text-align: right" action="" method="post">
+        {% csrf_token %}
+        <input title="" type="text" style="width:100%;display: none" name='article_id' value={{ article.id }} >
+        <input  title="" type="text" style="width:100%" name='comment' required="required"/>
+        <button style="margin-top:5px" type="submit">回复作者</button>
+    </form>
+    <hr/>
+    <table class="table">
+        <tbody>
+        {% for comment,replys in dicts.items %}
+            <tr>
+                <td align="center" style='width:10%'><h3>{{ comment.user }}
+                </h3></td>
+                <td id = '#hehe'><h2>: {{ comment.comment }}</h2>
+                    <table class="table">
+                        <tbody>
+                        {% for reply in replys %}
+                            <tr>
+                                <td align="center" width="5px">{{ reply.user }}</td>
+                                <td>:{{ reply.reply }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <a style="float: right" onclick="display({{ comment.id }})">回复</a>
+                    <form action="/student/article/reply/{{ article.id }}" class="reply-form"  id='{{ comment.id }}' style="text-align: right;display: none" method="post">
+                        <input type="text" title="reply_id_id" style="width:100%;display: none" name = 'reply_id_id'  required="required" value={{ comment.id }} >
+                        <input type="text" title="回复" style="width:100%" name='reply' required="required" >
+                        <button type="submit" style="float: right" >回复</button>
+                    </form>
+                    <script>
+                        function display(id) {
+                            {#var replyForm = document.getElementsByClassName("reply-form");#}
+                            {#for (var i = 0;i<replyForm.length;i++){#}
+                            {#    replyForm[i].style.display = "none";}#}
+                            $(".reply-form").hide();
+                            var obj = document.getElementById(id);
+                            console.log(obj);
+                            obj.style.display = "block";
+                        }
+                    </script>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

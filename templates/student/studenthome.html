@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css">
+    <script src="/static/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/popper/popper.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $('#1').html('haha')
+    </script>
+    <style>
+        a {
+        }
+
+        a:hover {
+            color: #FF00FF;
+            text-decoration: none;
+        }
+
+        img.w-100:hover {
+            transform: scale(1.2);
+            transition: all 1s;
+        }
+
+        div.media {
+            background: white;
+        }
+
+        div.media:hover {
+            box-shadow: 5px 5px 5px #888888;
+        }
+    </style>
+</head>
+<body style="height: 100%">
+<div class="container-fluid" style="background:cornflowerblue;position: relative">
+    <h1 style="margin-left: 30%">网上评教系统</h1>
+    {% if request.user.id is not None %}
+        <div class="dropdown" style="position: absolute;top: 0;right:0">
+            <a type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown">
+                {{ request.user.username }}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1"
+                style="background:cornflowerblue;min-width: 100px;">
+                <li><a href={% url 'studentinformation' %}>查看个人信息</a></li>
+                <li><a href={% url 'user:modify' %}>修改密码</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'user:logout' %}">注销</a></li>
+            </ul>
+        </div>
+        </div>
+    {% else %}
+        <a class="nav-link" href="{% url 'user:login' %}" style="position: absolute;top: 0;right: 0;size: A3">登陆<span
+                class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    {% endif %}
+</div>
+
+<div class="container-fluid" style="margin-top: 20px;margin-left: 15%">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href={% url 'studenthome' %}>首页</a></li>
+                <li><a href={% url 'unselected' %}>选课</a></li>
+                <li><a href={% url 'notevaluated' %}>评教</a></li>
+                <li><a href={% url 'studentsee' %}>查看优秀老师</a></li>
+            </ul>
+        </div>
+        <div class="col col-md-9">
+            {% block navigation2 %}
+                {% for blog in blogs %}
+                    <div class="media">
+                    <div class="media-left">
+                        <img src="{{ blog.img.url }}"  class="media-object w-100" style="width:60px">
+                    </div>
+                    <div class="media-body">
+<h4 class="media-heading"><a href={% url 'student_article' blog.id %}
+                            >{{ blog.title }}</a></h4>
+                        <p class="d-none d-sm-block mb-2 f-15">{{ blog.abstract }}</p>
+                    </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+    </div>
+</div>
+</div>
+</body>
+
+<footer class="footer" style="margin-top: 355px">
+    <div class="container-fluid" style="background:cornflowerblue;">
+        <h1 style="margin-left: 30%;">网上评教系统</h1>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,59 @@
+{% extends 'administrators/administratorshome.html' %}
+
+{% block content %}
+
+    <style>
+        label {
+            width: 10%;
+        }
+
+        ul li {
+            color: red;
+            list-style-type: none;
+        }
+    </style>
+    <form action="" method="post" enctype="multipart/form-data">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>标题</td>
+                <td>{{ form.title }}{{ error.title }}</td>
+            </tr>
+            <tr>
+                <td>摘要</td>
+                <td>{{ form.abstract }}{{ error.abstract }}</td>
+            </tr>
+            <tr>
+                <td>日期</td>
+                <td>{{ form.date }}{{ error.date }}</td>
+            </tr>
+            <tr>
+                <td>图像</td>
+                <td>{{ form.img }}{{ error.img }}</td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td>{{ form.article }}{{ error.article }}</td>
+            </tr>
+            </tbody>
+
+        </table>
+    <button style="margin-left: 90%" type="submit"> 提交</button>
+    </form>
+    <script type="text/javascript">
+        $("#id_date").datetimepicker({//选择年月日
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,//显示‘今日’按钮
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,  //Number, String. 默认值：0, 'hour'，日期时间选择器所能够提供的最精确的时间选择视图。
+
+            clearBtn: true,//清除按钮
+
+            forceParse: 0
+        });
+    </script>
+{% endblock %}

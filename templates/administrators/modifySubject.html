@@ -1,0 +1,34 @@
+{% extends 'administrators/administratorshome.html' %}
+{% block title %}
+    <title>Title</title>
+    <script src="/static/jquery/jquery-3.3.1.min.js"></script>
+    <script>
+        function modify() {
+            $.ajax({
+                url: '',
+                type: "POST",
+                traditional: true,
+                data: $('#form').serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (data == 'success') {
+                        window.location.href = '/administrators/seeSubject'
+                    } else {
+                        alert(data)
+                    }
+                },
+                error: function () {
+                    alert("错误");
+                }
+            })
+        }
+    </script>
+{% endblock %}
+{% block content %}
+
+
+    <form id="form">
+        {{ form.subject }}
+    </form>
+    <button type="button" id="login-button" onclick="modify()">Modify</button>
+{% endblock %}

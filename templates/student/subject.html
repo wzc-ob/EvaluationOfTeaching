@@ -1,0 +1,41 @@
+{% extends 'student/studenthome.html' %}
+{% block navigation2 %}
+
+
+    {#    <div style="margin-left: 5%">#}
+    <form action="" method="post" onsubmit="return  a()">
+        {#    <div style="text-align: left">#}
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                {% for subject in subjects %}
+                    {% csrf_token %}
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input name='{{ subject.subject }}' type="radio" value=0>较差
+                        </label> &nbsp;&nbsp;&nbsp;&nbsp;<label>
+                            <input name='{{ subject.subject }}' type="radio" value=1>一般
+                        </label> &nbsp;&nbsp;&nbsp;&nbsp;<label>
+                            <input name='{{ subject.subject }}' type="radio" value=2 checked='checked'>好
+                        </label> &nbsp;&nbsp;&nbsp;&nbsp;<label>
+                            <input name='{{ subject.subject }}' type="radio" value=3>较好
+                        </label> &nbsp;&nbsp;&nbsp;&nbsp;<label>
+                            很好
+                        </label></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <label>请输入你的意见：</label>
+        <br/>
+            <input style="width: 100%" name='opinion'>
+        <br/>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+    {#    </div>#}
+{% endblock %}

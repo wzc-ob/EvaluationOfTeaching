@@ -1,0 +1,29 @@
+{% extends 'administrators/administratorshome.html' %}
+{% block content %}
+    <style>
+    ul li {
+        color: red;
+        list-style-type: none;
+    }
+    </style>
+    <form action="" method="post">
+        <table class="table" style="table-layout: fixed">
+            <tbody>
+            <tr>
+                <td width="80px">教师编号 :</td>
+                <td>{{ form.user_id }}{{ error.user_id }}</td>
+            </tr>
+            <tr>
+                <td>密码 :</td>
+                <td>{{ form.password }}{{ error.password }}</td>
+            </tr>
+            <tr>
+                <td>姓名 :</td>
+                <td>{{ form.name }}{{ error.name }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <input type="submit">
+    </form>
+{% endblock %}

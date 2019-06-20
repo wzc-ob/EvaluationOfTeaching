@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for dict,replys in dicts.items %}
+    {{ dict.user }}:{{ dict.comment }}
+    {% for reply in replys %}
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ reply.user }}:{{ reply.reply }}</div>
+        {% endfor %}
+{% endfor %}
+</body>
+</html>

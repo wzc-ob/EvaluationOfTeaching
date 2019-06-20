@@ -1,0 +1,33 @@
+{% extends 'teacher/teacherhome.html' %}
+{% block menu %}
+    <li><a href={% url 'home' %}>首页</a></li>
+    <li style="background: #9d9d9d"><a href={% url 'teachersee' %}>查看优秀老师</a></li>
+    <li><a href={% url 'teachcourse' %}>查看教授课程</a></li>
+    <li><a href={% url 'checkEvaluated' %}>查看评价状态</a></li>
+    <li><a href={% url 'personalscores' %}>查看评价统计</a></li>
+    <li><a href={% url 'evaluateDetail' %}>查看评价明细</a></li>
+    <li><a href={% url 'singleScore' %}>查看单项评价</a></li>
+
+{% endblock %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>教师</th>
+                <th>平均分</th>
+                <th>排名</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.teacher__name }}</td>
+                    <td>{{ teacher.avg }}</td>
+                    <td>{{ forloop.counter }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

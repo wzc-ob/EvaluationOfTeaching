@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>教师</th>
+                <th>平均分</th>
+                <th>排名</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.teacher__name }}</td>
+                    <td>{{ teacher.avg}}</td>
+                    <td>{{ forloop.counter }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'administrators/administratorshome.html' %}
+{% block title %}
+    <title>查看教师分数</title>
+{% endblock %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>排名</th>
+                <th>教师</th>
+                <th>平均分</th>
+                <th>功能</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ teacher.teacher__name }}</td>
+                    <td>{{ teacher.avg|slice:"2:" }}</td>
+                    <td><a href={% url 'singleTeacherScore' 7 %}>查看单项</a></td>
+
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

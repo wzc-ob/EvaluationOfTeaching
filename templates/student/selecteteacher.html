@@ -1,0 +1,31 @@
+{% extends 'student/studenthome.html' %}
+{% block navigation2 %}
+    <ul class="nav nav-tabs">
+        <li><a href={% url 'unselected' %}>选课</a></li>
+        <li><a href={% url 'selectedcourses' %}>已选</a></li>
+    </ul>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>课程名</th>
+                <th>授课老师</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for t_course in t_courses %}
+                <tr>
+                    <td>{{ t_course.id }}</td>
+                    <td> {{ t_course.course.cname }}</td>
+                    <td>{{ t_course.teacher.name }}</td>
+                    <td><a href={% url 'add' t_course.course.id t_course.teacher.id %}>选课</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+

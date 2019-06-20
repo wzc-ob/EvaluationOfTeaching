@@ -1,0 +1,23 @@
+{% extends 'administrators/administratorshome.html' %}
+
+{% block content %}
+    <h3>评价指标 ：  0:较差 1:一般 2:好  3:较好  4:很好</h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>题目</th>
+                <th>分数</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key ,value in context.items %}
+                <tr>
+                    <td> {{ key }}</td>
+                    <td> {{ value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

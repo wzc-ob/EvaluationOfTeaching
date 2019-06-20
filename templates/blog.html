@@ -1,0 +1,40 @@
+{% extends "home.html" %}
+{% block content %}
+    <style>
+        input:focus {
+            height: 48px;
+        }
+    </style>
+    <div>
+        <h1>{{ article.title }}</h1>
+        {% autoescape off %}
+            {{ article.article }}
+        {% endautoescape %}
+        <hr/>
+    </div>
+    <hr/>
+    <table class="table">
+        <tbody>
+        {% for dict,replys in dicts.items %}
+            <tr>
+                <td align="center" style='width:10%'><h3>{{ dict.user }}
+                </h3></td>
+                <td><h2>: {{ dict.comment }}</h2>
+                    <table class="table" >
+                        <tbody>
+                        {% for reply in replys %}
+                            <tr>
+                                <td align="center" width="5px">{{ reply.user }}</td>
+                                <td>:{{ reply.reply }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- 模态框（Modal） -->
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
